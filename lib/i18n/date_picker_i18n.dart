@@ -71,6 +71,12 @@ abstract class _StringsI18n {
 
   /// Get the short name of week
   List<String>? getWeeksShort();
+
+  /// Get the year suffix (e.g., "年" for Japanese)
+  String? getYearSuffix() => null;
+
+  /// Get the day suffix (e.g., "日" for Japanese)
+  String? getDaySuffix() => null;
 }
 
 enum DateTimePickerLocale {
@@ -193,21 +199,24 @@ const Map<DateTimePickerLocale, _StringsI18n> datePickerI18n = {
 class DatePickerI18n {
   /// Get done button text
   static String getLocaleDone(DateTimePickerLocale locale) {
-    _StringsI18n i18n = datePickerI18n[locale] ??
+    _StringsI18n i18n =
+        datePickerI18n[locale] ??
         datePickerI18n[DATETIME_PICKER_LOCALE_DEFAULT]!;
     return i18n.getDoneText();
   }
 
   /// Get cancel button text
   static String getLocaleCancel(DateTimePickerLocale locale) {
-    _StringsI18n i18n = datePickerI18n[locale] ??
+    _StringsI18n i18n =
+        datePickerI18n[locale] ??
         datePickerI18n[DATETIME_PICKER_LOCALE_DEFAULT]!;
     return i18n.getCancelText();
   }
 
   /// Get locale month array
   static List<String> getLocaleMonths(DateTimePickerLocale? locale) {
-    _StringsI18n i18n = datePickerI18n[locale!] ??
+    _StringsI18n i18n =
+        datePickerI18n[locale!] ??
         datePickerI18n[DATETIME_PICKER_LOCALE_DEFAULT]!;
     List<String> months = i18n.getMonths();
     if (months.isNotEmpty) {
@@ -217,9 +226,12 @@ class DatePickerI18n {
   }
 
   /// Get locale week array
-  static List<String>? getLocaleWeeks(DateTimePickerLocale? locale,
-      [bool isFull = true]) {
-    _StringsI18n? i18n = datePickerI18n[locale!] ??
+  static List<String>? getLocaleWeeks(
+    DateTimePickerLocale? locale, [
+    bool isFull = true,
+  ]) {
+    _StringsI18n? i18n =
+        datePickerI18n[locale!] ??
         datePickerI18n[DATETIME_PICKER_LOCALE_DEFAULT];
     if (isFull) {
       List<String> weeks = i18n!.getWeeksFull();
@@ -241,5 +253,21 @@ class DatePickerI18n {
           .toList();
     }
     return datePickerI18n[DATETIME_PICKER_LOCALE_DEFAULT]!.getWeeksShort();
+  }
+
+  /// Get locale year suffix
+  static String? getLocaleYearSuffix(DateTimePickerLocale? locale) {
+    _StringsI18n? i18n =
+        datePickerI18n[locale!] ??
+        datePickerI18n[DATETIME_PICKER_LOCALE_DEFAULT];
+    return i18n?.getYearSuffix();
+  }
+
+  /// Get locale day suffix
+  static String? getLocaleDaySuffix(DateTimePickerLocale? locale) {
+    _StringsI18n? i18n =
+        datePickerI18n[locale!] ??
+        datePickerI18n[DATETIME_PICKER_LOCALE_DEFAULT];
+    return i18n?.getDaySuffix();
   }
 }

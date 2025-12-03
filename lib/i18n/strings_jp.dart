@@ -28,33 +28,27 @@ class _StringsJp extends _StringsI18n {
       "9月",
       "10月",
       "11月",
-      "12月"
+      "12月",
     ];
   }
 
   @override
   List<String> getWeeksFull() {
-    return [
-      "月曜日",
-      "火曜日",
-      "水曜日",
-      "木曜日",
-      "金曜日",
-      "土曜日",
-      "日曜日",
-    ];
+    return ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"];
   }
 
   @override
   List<String> getWeeksShort() {
-    return [
-      "月",
-      "火",
-      "水",
-      "木",
-      "金",
-      "土",
-      "日",
-    ];
+    return ["月", "火", "水", "木", "金", "土", "日"];
+  }
+
+  @override
+  String? getYearSuffix() {
+    return '年';
+  }
+
+  @override
+  String? getDaySuffix() {
+    return '日';
   }
 }

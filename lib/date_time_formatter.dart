@@ -159,23 +159,24 @@ class DateTimeFormatter {
       value += 543;
     }
     String yearSuffix = DatePickerI18n.getLocaleYearSuffix(locale) ?? '';
-    String yearValue;
+    String yearValue = value.toString();
+    String result;
     if (format.contains('yyyy')) {
       // yyyy: the digit count of year is 4, e.g. 2019
-      yearValue = value.toString();
-      return format.replaceAll('yyyy', yearValue + yearSuffix);
+      result = format.replaceAll('yyyy', yearValue + yearSuffix);
     } else if (format.contains('yy')) {
       // yy: the digit count of year is 2, e.g. 19
       yearValue = value.toString().substring(
         max(0, value.toString().length - 2),
       );
-      return format.replaceAll('yy', yearValue + yearSuffix);
+      result = format.replaceAll('yy', yearValue + yearSuffix);
     } else if (format.contains('y')) {
       // y: the digit count of year is variable
-      yearValue = value.toString();
-      return format.replaceAll('y', yearValue + yearSuffix);
+      result = format.replaceAll('y', yearValue + yearSuffix);
+    } else {
+      result = yearValue + yearSuffix;
     }
-    return value.toString() + yearSuffix;
+    return result;
   }
 
   /// format month text
@@ -203,17 +204,20 @@ class DateTimeFormatter {
     DateTimePickerLocale? locale,
   ) {
     String daySuffix = DatePickerI18n.getLocaleDaySuffix(locale) ?? '';
+    String dayValue;
+    String result;
     if (format.contains('dd')) {
       // dd: the digit count of day is 2, e.g. 01
-      return format.replaceAll(
-        'dd',
-        value.toString().padLeft(2, '0') + daySuffix,
-      );
+      dayValue = value.toString().padLeft(2, '0');
+      result = format.replaceAll('dd', dayValue + daySuffix);
     } else if (format.contains('d')) {
       // d: the digit count of day is 1 or 2, e.g. 1 or 01
-      return format.replaceAll('d', value.toString() + daySuffix);
+      dayValue = value.toString();
+      result = format.replaceAll('d', dayValue + daySuffix);
+    } else {
+      result = value.toString() + daySuffix;
     }
-    return value.toString() + daySuffix;
+    return result;
   }
 
   /// format week text
